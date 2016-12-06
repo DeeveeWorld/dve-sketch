@@ -1,0 +1,6 @@
+{
+  "name": "dve-sketch",
+  "short_name": "dve-sketch",
+  "start_url": "/",
+  "display": "standalone"
+}

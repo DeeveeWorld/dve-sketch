@@ -1,0 +1,158 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/leaflet-map/leaflet-map.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="dve-sketch-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+        font-family: sans-serif;
+        font-weight: lighter;
+        width: 100vw;
+        background-color: transparent;
+        height: 100vh;
+        @apply(--layout-vertical);
+        @apply(--layout-center);
+      }
+
+      .top {
+        @apply(--layout-flex);
+        @apply(--layout-horizontal);
+        z-index: 1;
+        width: 100%;
+      }
+
+      .middle {
+        z-index: 1;
+        @apply(--layout-flex);
+      }
+
+      .bottom {
+        z-index: 1;
+        width: 100%;
+        @apply(--layout-horizontal);
+      }
+
+      .brand {
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+        font-size: 4vw;
+        background-color: white;
+        text-align: center;
+        padding: 15px;
+        margin-bottom: 5px;
+        margin-top: -50px;
+        text-transform: uppercase;
+      }
+
+      .hashtag {
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        font-size: 5.5vw;
+        background-color: white;
+        text-align: center;
+        padding: 15px;
+      }
+
+      .heavy {
+        font-weight: bold;
+      }
+
+      .map {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+      }
+
+      leaflet-map {
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+      }
+
+      .flex {
+        @apply(--layout-flex);
+      }
+
+      .cornericon {
+        width: 48px;
+        height: 48px;
+        margin: 24px;
+        background-color: white;
+      }
+    </style>
+    <div class="top">
+      <div>avatar</div>
+      <div class="flex"></div>
+      <iron-icon icon="search" class="cornericon"></iron-icon>
+      <iron-icon icon="menu" class="cornericon"></iron-icon>
+    </div>
+
+    <div class="middle">
+
+      <div class="exit">
+
+      </div>
+
+      <div class="brand">
+        <div><span class="heavy">deevee</span>.world</div>
+      </div>
+
+      <div class="hashtag">
+        #needaride <iron-icon icon="arrow-drop-down"></iron-icon>
+      </div>
+
+    </div>
+
+    <div class="bottom">
+      <div class="flex"></div>
+      <iron-icon icon="add" class="cornericon"></iron-icon>
+    </div>
+
+    <div class="map">
+      <leaflet-map
+      id="leafletmap"
+      draggable
+      on-map-ready="mapready"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      no-Zoom-Control="true"
+      min-zoom="8"
+      max-zoom="17"
+      zoom="14">
+
+      <leaflet-geolocation
+        id="geolocation"
+        on-locationfound="locationfound"
+        enable-high-accuracy
+        latitude="{{latitude}}"
+        longitude="{{longitude}}"
+        accuracy="3">
+      </leaflet-geolocation>
+
+      <leaflet-tilelayer
+        url="//1.base.maps.cit.api.here.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?app_id=s6z9incVaWY1oE3SoBol&app_code=iJKI11eGupM_wnz2_EQ2Kg" max-zoom="19">
+      </leaflet-tilelayer>
+
+    </leaflet-map>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'dve-sketch-app',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'dve-sketch-app',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
